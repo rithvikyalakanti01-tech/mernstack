@@ -7,3 +7,8 @@ Tags:
 -<i>
 -<body>
 -<p>
+-<strong>
+-&nbsp;(Blank space)
+-&lt;(<)
+-&gt;(>)
+-&copy;(©)
