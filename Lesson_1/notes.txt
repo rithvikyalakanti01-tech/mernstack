@@ -1,14 +1,2935 @@
-Tags:
--<html>
--<head>
--<title>
--<em>
--<b>
--<i>
--<body>
--<p>
--<strong>
--&nbsp;(Blank space)
--&lt;(<)
--&gt;(>)
--&copy;(©)
+1. <!DOCTYPE html>
+---
+Purpose: Declares the document type as HTML5
+Syntax: <!DOCTYPE html>
+
+Attributes: None (Declaration only)
+
+Notes:
+  • Must be the first line in an HTML document
+  • Case-insensitive
+  • Tells browsers this is an HTML5 document
+  • Without it, browsers may enter "quirks mode"
+
+
+---
+2. <html>
+---
+Purpose: Root element that wraps all content in an HTML page
+
+Attributes:
+  lang          - Specifies language (e.g., "en", "es", "fr")
+  dir           - Text direction: ltr (left-to-right) | rtl (right-to-left)
+  xmlns         - XML namespace (for XHTML)
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <html lang="en" dir="ltr">
+    ...
+  </html>
+
+Notes:
+  • Parent element of <head> and <body>
+  • Always include lang attribute for accessibility and SEO
+  • Helps screen readers and translation services
+
+
+---
+3. <head>
+---
+Purpose: Contains metadata, title, links, and other non-visible information
+
+Attributes:
+  Global Attributes: id, class, style, etc.
+
+Child Elements:
+  <title>       - Page title (required)
+  <meta>        - Metadata
+  <link>        - External resources (CSS, icons)
+  <style>       - Internal CSS
+  <script>      - JavaScript code or links
+  <base>        - Base URL for relative links
+
+Example:
+  <head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+Notes:
+  • Content is NOT displayed on page
+  • Should contain exactly one <title>
+  • Meta tags critical for SEO and mobile responsiveness
+
+
+---
+4. <title>
+---
+Purpose: Sets the page title (shown in browser tab and search results)
+
+Attributes:
+  Global Attributes: id, class, style, etc.
+
+Example:
+  <title>Welcome to My Website</title>
+
+Notes:
+  • Required element
+  • Keep 50-60 characters for search results
+  • Should be unique and descriptive
+  • Critical for SEO
+
+
+---
+5. <body>
+---
+Purpose: Defines the main visible content of the page
+
+Attributes:
+  onload        - JavaScript when page finishes loading
+  onunload      - JavaScript when user leaves page
+  onbeforeunload - JavaScript before page unloads
+  Global Attributes: id, class, style, etc.
+
+Deprecated Attributes (Use CSS instead):
+  background    - Background image
+  bgcolor       - Background color
+  text          - Text color
+  link          - Link color
+  alink         - Active link color
+  vlink         - Visited link color
+
+Example:
+  <body>
+    <header>...</header>
+    <main>...</main>
+    <footer>...</footer>
+  </body>
+
+Notes:
+  • Only one <body> per document
+  • All visible content goes here
+  • Use CSS for all styling
+
+
+---
+6. <base>
+---
+Purpose: Sets a base URL for all relative links in the document
+
+Attributes:
+  href          - Base URL (required)
+  target        - Default target for links: _blank | _self | _parent | _top
+  Global Attributes: id, class, style, etc.
+
+Example:
+  <base href="https://example.com/pages/">
+  <base href="https://example.com/" target="_blank">
+
+Notes:
+  • Must be in <head>
+  • Only one <base> per document
+  • Affects all relative URLs
+
+
+---
+7. <meta>
+---
+Purpose: Provides metadata about the HTML document
+
+Attributes:
+  charset       - Character encoding (e.g., "UTF-8")
+  name          - Metadata name (description, keywords, author, viewport, etc.)
+  content       - Content value for the metadata
+  http-equiv    - HTTP header equivalent (refresh, content-type, etc.)
+  property      - For Open Graph and other properties
+  Global Attributes: id, class, style, etc.
+
+Common Examples:
+  <!-- Character encoding -->
+  <meta charset="UTF-8">
+  
+  <!-- Mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Page description (SEO) -->
+  <meta name="description" content="Brief description of page">
+  
+  <!-- Keywords (SEO) -->
+  <meta name="keywords" content="keyword1, keyword2, keyword3">
+  
+  <!-- Author -->
+  <meta name="author" content="Author Name">
+  
+  <!-- Robots (SEO) -->
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph (Social Media) -->
+  <meta property="og:title" content="Title">
+  <meta property="og:description" content="Description">
+  <meta property="og:image" content="image.jpg">
+  <meta property="og:url" content="https://example.com">
+  
+  <!-- Refresh page -->
+  <meta http-equiv="refresh" content="5">
+  
+  <!-- Compatibility mode -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+Notes:
+  • Multiple <meta> tags allowed
+  • Critical for SEO and mobile
+  • Social media uses Open Graph meta tags
+
+
+---
+8. <link>
+---
+Purpose: Links external resources like stylesheets, icons, and other documents
+
+Attributes:
+  href          - URL of the resource (required)
+  rel           - Relationship to current document (required)
+  type          - MIME type of resource
+  media         - Media type for stylesheet (e.g., "screen", "print")
+  sizes         - Icon sizes (for rel="icon")
+  hreflang      - Language of linked resource
+  crossorigin   - CORS setting: anonymous | use-credentials
+  integrity     - Subresource integrity check
+  Global Attributes: id, class, style, etc.
+
+Common rel values:
+  stylesheet    - CSS stylesheet
+  icon          - Website favicon
+  alternate     - Alternate version
+  prev/next     - Previous/next page
+  canonical    - Preferred version of page
+  preload       - Preload resource
+  prefetch      - Prefetch resource
+  dns-prefetch  - Prefetch DNS
+
+Examples:
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico">
+  
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="apple-icon.png">
+  
+  <!-- Canonical URL (SEO) -->
+  <link rel="canonical" href="https://example.com/page">
+  
+  <!-- Preload font -->
+  <link rel="preload" href="font.woff2" as="font" crossorigin>
+
+Notes:
+  • Self-closing tag
+  • Must be in <head>
+  • Multiple <link> tags allowed
+  • Critical for styling and SEO
+
+
+================================================================================
+TEXT & CONTENT TAGS
+================================================================================
+
+---
+9. <h1> to <h6>
+---
+Purpose: Define headings from most important (h1) to least important (h6)
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <h1>Main Page Heading</h1>
+  <h2>Section Heading</h2>
+  <h3>Subsection Heading</h3>
+  <h4>Minor Heading</h4>
+  <h5>Very Minor Heading</h5>
+  <h6>Least Important Heading</h6>
+
+Notes:
+  • h1 should appear once per page
+  • Use for structure and SEO, not for styling
+  • Screen readers use headings for navigation
+  • Never skip levels (e.g., h1 to h3)
+  • Proper hierarchy improves accessibility
+
+
+---
+10. <p>
+---
+Purpose: Defines a paragraph of text
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Deprecated Attributes (Use CSS):
+  align         - Alignment: left | center | right | justify
+
+Example:
+  <p>This is a paragraph of text.</p>
+  <p>Multiple paragraphs can follow each other.</p>
+
+Notes:
+  • Block-level element
+  • Browsers add automatic margins
+  • Use CSS for alignment and styling
+  • One concept per paragraph (best practice)
+
+
+---
+11. <br>
+---
+Purpose: Inserts a line break
+
+Attributes:
+  Global Attributes: id, class, style, etc.
+
+Example:
+  Line 1<br>
+  Line 2<br>
+  Line 3
+
+Notes:
+  • Self-closing tag: <br> or <br/>
+  • Do NOT use for spacing (use CSS margins)
+  • Do NOT use for multiple paragraphs
+  • Valid uses: poetry, addresses, song lyrics
+
+
+---
+12. <hr>
+---
+Purpose: Inserts a horizontal rule (thematic break)
+
+Attributes:
+  Global Attributes: id, class, style, title, etc.
+
+Deprecated Attributes (Use CSS):
+  align         - Alignment
+  size          - Height in pixels
+  width         - Width of line
+  noshade       - Removes 3D effect
+
+Example:
+  <hr>
+
+Notes:
+  • Self-closing tag
+  • Represents thematic break between content
+  • Styled entirely with CSS
+  • Semantic significance for content structure
+
+
+---
+13. <strong>
+---
+Purpose: Marks text with strong importance (typically bold)
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>This is <strong>very important</strong>.</p>
+
+Notes:
+  • Semantic tag indicating importance
+  • Screen readers emphasize this text
+  • Different from <b> (which is visual only)
+  • Use for keywords and critical statements
+
+
+---
+14. <b>
+---
+Purpose: Makes text bold for stylistic purposes (no semantic meaning)
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>This text is <b>bold</b> but not important.</p>
+
+Notes:
+  • Purely visual formatting
+  • Use <strong> for actual importance
+  • Use CSS for styling preference
+  • Less semantic than <strong>
+
+
+---
+15. <em>
+---
+Purpose: Marks text with emphasis (typically italics)
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>This is <em>emphasized</em> text.</p>
+
+Notes:
+  • Semantic tag for stress emphasis
+  • Screen readers change intonation
+  • Different from <i> (visual only)
+  • Can be nested for increased emphasis
+
+
+---
+16. <i>
+---
+Purpose: Italicizes text for alternative voice or mood (visual only)
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>This is <i>italic</i> text.</p>
+
+Notes:
+  • Purely visual, no semantic meaning
+  • Use <em> for actual emphasis
+  • Common uses: technical terms, foreign words, thoughts, titles
+  • Use CSS for styling
+
+
+---
+17. <mark>
+---
+Purpose: Highlights text for reference or attention
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>This text is <mark>highlighted</mark>.</p>
+
+Notes:
+  • Default yellow background (customizable with CSS)
+  • Indicates relevance, not importance
+  • Common in search result highlighting
+  • Accessible with proper contrast
+
+
+---
+18. <small>
+---
+Purpose: Reduces font size for fine print, disclaimers, or copyright
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <small>© 2024 Company Name. All rights reserved.</small>
+
+Notes:
+  • Semantic tag for smaller text
+  • Use CSS for purely stylistic sizing
+  • Common in footers and legal text
+  • Screen readers indicate smaller text
+
+
+---
+19. <sub>
+---
+Purpose: Adds subscript text (below the baseline)
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  H<sub>2</sub>O
+  C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>
+
+Notes:
+  • Reduces font size and lowers text
+  • Chemical formulas, mathematical notation
+  • Pair with <sup> for complete notation
+
+
+---
+20. <sup>
+---
+Purpose: Adds superscript text (above the baseline)
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  E=mc<sup>2</sup>
+  2<sup>10</sup> = 1024
+
+Notes:
+  • Reduces font size and raises text
+  • Mathematical formulas, exponents
+  • Pair with <sub> for complete notation
+
+
+---
+21. <u>
+---
+Purpose: Underlines text
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p><u>Underlined text</u></p>
+
+Notes:
+  • Can be confused with links (use cautiously)
+  • Use CSS for styling
+  • Limited semantic meaning
+  • Better alternatives: <ins> for inserted text
+
+
+---
+22. <s>
+---
+Purpose: Marks text as no longer accurate or relevant
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p><s>Old price: $50</s> Now $30</p>
+
+Notes:
+  • Different from <del> (deleted content)
+  • Displays with strikethrough
+  • Common for price changes
+  • Has semantic meaning unlike CSS strikethrough
+
+
+---
+23. <del>
+---
+Purpose: Marks text as deleted or removed (tracked changes)
+
+Attributes:
+  cite          - URL explaining why deleted
+  datetime      - Date/time of deletion (format: YYYY-MM-DDTHH:MM:SS)
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p><del cite="corrections.html" datetime="2024-01-15T10:30:00">
+    This text was deleted</del></p>
+
+Notes:
+  • Semantic tag for document tracking
+  • Usually displayed with strikethrough
+  • Pair with <ins> for showing additions
+  • datetime format includes timezone
+
+
+---
+24. <ins>
+---
+Purpose: Marks text as inserted or added (tracked changes)
+
+Attributes:
+  cite          - URL explaining why inserted
+  datetime      - Date/time of insertion (format: YYYY-MM-DDTHH:MM:SS)
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p><ins cite="updates.html" datetime="2024-01-15T10:30:00">
+    This text was inserted</ins></p>
+
+Notes:
+  • Semantic tag for document tracking
+  • Usually displayed with underline
+  • Pair with <del> for complete tracking
+  • Useful in version control systems
+
+
+---
+25. <code>
+---
+Purpose: Represents computer code text
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>Use the <code>console.log()</code> function to debug.</p>
+
+Notes:
+  • Typically displayed in monospace font
+  • Use <pre> for code blocks with formatting
+  • Screen readers may spell out code
+  • Customize styling with CSS
+
+
+---
+26. <pre>
+---
+Purpose: Displays text with preserved spacing and line breaks
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <pre>
+  def hello_world():
+      print("Hello, World!")
+  </pre>
+
+Notes:
+  • Whitespace and line breaks preserved
+  • Monospace font by default
+  • Often combined with <code>
+  • Use for ASCII art, formatted output
+
+
+---
+27. <blockquote>
+---
+Purpose: Displays long quotations from other sources
+
+Attributes:
+  cite          - URL source of quotation
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <blockquote cite="https://example.com/article">
+    <p>This is a quotation from another source.</p>
+  </blockquote>
+
+Notes:
+  • Block-level element
+  • Typically indented by browsers
+  • Use <cite> tag inside for source
+  • Use <q> for inline quotes
+
+
+---
+28. <q>
+---
+Purpose: Represents a short inline quotation
+
+Attributes:
+  cite          - URL source of quotation
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>She said <q cite="source.html">This is important</q> yesterday.</p>
+
+Notes:
+  • Inline element
+  • Browsers typically add quotation marks
+  • Use <blockquote> for longer quotes
+  • Semantic meaning for accessibility
+
+
+---
+29. <cite>
+---
+Purpose: Marks the title of a work (book, movie, song, website)
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>I recommend reading <cite>The Great Gatsby</cite>.</p>
+
+Notes:
+  • Typically displayed in italics
+  • For titles of creative works
+  • Different from cite attribute
+  • Semantic for accessibility
+
+
+---
+30. <dfn>
+---
+Purpose: Marks the defining instance of a term
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p><dfn>HTML</dfn> is the markup language for web pages.</p>
+
+Notes:
+  • Typically displayed in italics
+  • First mention of term should use this
+  • Useful in glossaries and documentation
+  • Helps screen readers identify definitions
+
+
+---
+31. <abbr>
+---
+Purpose: Defines an abbreviation or acronym with a tooltip
+
+Attributes:
+  title         - Full expansion of abbreviation (required for accessibility)
+  Global Attributes: id, class, style, etc.
+
+Example:
+  <p><abbr title="Hypertext Markup Language">HTML</abbr> is important.</p>
+
+Notes:
+  • Shows tooltip on hover
+  • title attribute is essential for accessibility
+  • Screen readers read the full form
+  • Always include title attribute
+
+
+---
+32. <address>
+---
+Purpose: Specifies contact information for person, organization, or author
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <address>
+    John Doe<br>
+    123 Main Street<br>
+    New York, NY 10001<br>
+    <a href="mailto:john@example.com">john@example.com</a>
+  </address>
+
+Notes:
+  • Typically displayed in italics
+  • Often used in website footers
+  • Can contain links and line breaks
+  • Semantic tag for accessibility
+
+
+---
+33. <kbd>
+---
+Purpose: Marks text as keyboard input
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save.</p>
+
+Notes:
+  • Monospace font by default
+  • Use for keyboard keys and commands
+  • Can be nested for key combinations
+  • Screen readers announce as keyboard input
+
+
+---
+34. <samp>
+---
+Purpose: Represents sample computer output
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>The output was: <samp>Error: File not found</samp></p>
+
+Notes:
+  • Monospace font by default
+  • Use for command-line output
+  • Different from <code> (input vs. output)
+  • Semantic tag for meaning
+
+
+---
+35. <var>
+---
+Purpose: Represents a variable in code or mathematics
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>The formula is: <var>a</var> + <var>b</var> = <var>c</var></p>
+
+Notes:
+  • Typically displayed in italics
+  • Use in mathematical and programming contexts
+  • Screen readers identify as variable
+  • Semantic tag
+
+
+---
+36. <bdi>
+---
+Purpose: Bi-Directional Isolation - isolates text direction
+
+Attributes:
+  dir           - Force direction: ltr | rtl | auto
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p><bdi>Hello مرحبا</bdi></p>
+
+Notes:
+  • Prevents text direction issues with multilingual content
+  • Isolates portion of text
+  • Auto detects direction if not specified
+  • Important for right-to-left languages
+
+
+---
+37. <bdo>
+---
+Purpose: Bi-Directional Override - forces text direction
+
+Attributes:
+  dir           - Direction (required): ltr | rtl
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p><bdo dir="rtl">This text runs right to left</bdo></p>
+
+Notes:
+  • Overrides default text direction
+  • dir attribute is required
+  • Less common than <bdi>
+  • Use for special formatting needs
+
+
+---
+38. <span>
+---
+Purpose: Generic inline container for styling or grouping text
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <p>This is <span class="highlight">highlighted</span> text.</p>
+
+Notes:
+  • Inline element (no line breaks)
+  • No semantic meaning
+  • Used purely for styling
+  • Cannot contain block-level elements
+
+
+---
+39. <div>
+---
+Purpose: Generic container for grouping content into sections
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <div class="container">
+    <div class="header">...</div>
+    <div class="content">...</div>
+  </div>
+
+Notes:
+  • Block-level element (full width)
+  • Most commonly used container
+  • No semantic meaning
+  • Use semantic tags when appropriate
+
+
+================================================================================
+LINK & NAVIGATION TAGS
+================================================================================
+
+---
+40. <a>
+---
+Purpose: Creates hyperlinks to pages, sections, email, or phone
+
+Attributes:
+  href          - URL or path to link to (required)
+  target        - Where to open: _blank | _self | _parent | _top | framename
+  title         - Tooltip text on hover
+  download      - Downloads file instead of navigating
+  rel           - Relationship: nofollow | noopener | noreferrer | etc.
+  type          - MIME type of linked resource
+  hreflang      - Language of linked resource
+  ping          - URLs to notify on link click
+  Global Attributes: id, class, style, data-*, etc.
+
+Common rel values:
+  nofollow      - Don't follow link (for SEO)
+  noopener      - Don't give access to window object (security)
+  noreferrer    - Don't send referrer info
+  external      - Link to external site
+  help          - Link to help content
+  license       - Link to license
+  next/prev     - Next/previous page
+
+Examples:
+  <!-- Simple link -->
+  <a href="https://example.com">Visit Example</a>
+  
+  <!-- New tab -->
+  <a href="page.html" target="_blank" rel="noopener noreferrer">Link</a>
+  
+  <!-- Jump to section -->
+  <a href="#section-id">Jump to Section</a>
+  
+  <!-- Email link -->
+  <a href="mailto:email@example.com">Email Me</a>
+  
+  <!-- Phone link -->
+  <a href="tel:+1-555-123-4567">Call Me</a>
+  
+  <!-- Download file -->
+  <a href="document.pdf" download>Download PDF</a>
+  
+  <!-- File with custom name -->
+  <a href="file.pdf" download="custom-name.pdf">Download</a>
+
+Notes:
+  • Always use rel="noopener noreferrer" with target="_blank"
+  • mailto: protocol for email links
+  • tel: protocol for phone links
+  • # for same-page section links
+  • Security-critical attribute: rel
+
+
+---
+41. <nav>
+---
+Purpose: Represents navigation links for the site
+
+Attributes:
+  Global Attributes: id, class, style, title, data-*, etc.
+
+Example:
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+Notes:
+  • Major navigation only (not every link)
+  • Contains <a> tags usually in lists
+  • Can appear multiple times
+  • Improves accessibility and SEO
+
+
+================================================================================
+IMAGE & MEDIA TAGS
+================================================================================
+
+---
+42. <img>
+---
+Purpose: Displays an image on the page
+
+Attributes:
+  src           - Image URL or path (required)
+  alt           - Alternative text for screen readers (required)
+  title         - Tooltip text on hover
+  width         - Image width in pixels or percentage
+  height        - Image height in pixels or percentage
+  loading       - Lazy loading: lazy | eager | auto
+  decoding      - Decoding: auto | sync | async
+  srcset        - Multiple images for different resolutions
+  sizes         - Image sizes for responsive images
+  usemap        - Links to <map> for image maps
+  ismap         - Server-side image map indicator
+  crossorigin   - CORS setting: anonymous | use-credentials
+  Global Attributes: id, class, style, data-*, etc.
+
+Examples:
+  <!-- Basic image -->
+  <img src="image.jpg" alt="Description of image" width="300" height="200">
+  
+  <!-- Responsive image -->
+  <img src="image.jpg" alt="Description" 
+       srcset="image-small.jpg 480w, image-medium.jpg 800w, image-large.jpg 1200w"
+       sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw">
+  
+  <!-- Image map -->
+  <img src="map.jpg" alt="Map" usemap="#mymap">
+
+Notes:
+  • Self-closing tag
+  • alt text is critical (SEO and accessibility)
+  • Always specify width and height
+  • Prevents layout shift
+  • Supported formats: JPEG, PNG, GIF, WebP, SVG
+  • Use srcset for responsive images
+
+
+---
+43. <picture>
+---
+Purpose: Container for multiple image sources (responsive/format-specific)
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Child Elements:
+  <source>      - Image sources with conditions
+  <img>         - Fallback image (required)
+
+Example:
+  <picture>
+    <source media="(max-width: 600px)" srcset="small.jpg">
+    <source media="(max-width: 1200px)" srcset="medium.jpg">
+    <source srcset="large.jpg" type="image/jpeg">
+    <img src="fallback.jpg" alt="Description">
+  </picture>
+
+Notes:
+  • Requires fallback <img>
+  • Browser picks first matching source
+  • Supports art direction
+  • Better than img srcset for complex scenarios
+
+
+---
+44. <figure> and <figcaption>
+---
+Purpose: Represents self-contained content with optional caption
+
+Attributes for <figure>:
+  Global Attributes: id, class, style, data-*, etc.
+
+Attributes for <figcaption>:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <figure>
+    <img src="diagram.jpg" alt="Process diagram">
+    <figcaption>Figure 1: The complete process flow</figcaption>
+  </figure>
+
+Notes:
+  • <figcaption> is optional
+  • Can contain images, charts, code, etc.
+  • Semantic grouping of content
+  • Accessible with proper captions
+
+
+---
+45. <audio>
+---
+Purpose: Embeds audio content with playback controls
+
+Attributes:
+  src           - Audio file URL (alternative to <source>)
+  controls      - Shows play/pause/volume controls
+  autoplay      - Starts playing automatically
+  loop          - Repeats after finishing
+  muted         - Mutes by default
+  preload       - What to load: none | metadata | auto
+  crossorigin   - CORS setting: anonymous | use-credentials
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <audio controls>
+    <source src="audio.mp3" type="audio/mpeg">
+    <source src="audio.ogg" type="audio/ogg">
+    Your browser does not support audio.
+  </audio>
+
+Notes:
+  • Contains <source> elements
+  • Supports MP3, WAV, OGG formats
+  • autoplay may require muted
+  • Browsers may block autoplay
+
+
+---
+46. <video>
+---
+Purpose: Embeds video content with playback controls
+
+Attributes:
+  src           - Video file URL (alternative to <source>)
+  controls      - Shows playback controls
+  autoplay      - Starts playing automatically
+  loop          - Repeats after finishing
+  muted         - Mutes by default
+  preload       - What to load: none | metadata | auto
+  poster        - Image shown before play
+  width         - Video width in pixels
+  height        - Video height in pixels
+  crossorigin   - CORS setting: anonymous | use-credentials
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <video width="640" height="480" controls poster="thumb.jpg">
+    <source src="video.mp4" type="video/mp4">
+    <source src="video.webm" type="video/webm">
+    Your browser does not support video.
+  </video>
+
+Notes:
+  • Contains <source> elements
+  • Supports MP4, WebM, OGG formats
+  • poster shows preview image
+  • autoplay may require muted
+
+
+---
+47. <source>
+---
+Purpose: Specifies media resources for <audio>, <video>, or <picture>
+
+Attributes:
+  src           - Media file URL (required)
+  type          - MIME type: video/mp4 | audio/mpeg | image/webp | etc.
+  media         - Media query for <picture> (e.g., "(max-width: 600px)")
+  srcset        - Multiple sources for <picture>
+  sizes         - Image sizes for responsive images
+
+Example:
+  <video controls>
+    <source src="video.mp4" type="video/mp4">
+    <source src="video.webm" type="video/webm">
+  </video>
+
+Notes:
+  • Self-closing tag
+  • Browser uses first compatible source
+  • Always include type for performance
+  • Order from most to least preferred
+
+
+---
+48. <track>
+---
+Purpose: Provides text tracks for media (captions, subtitles, descriptions)
+
+Attributes:
+  src           - WebVTT file path (required)
+  kind          - Track type: captions | subtitles | descriptions | chapters | metadata
+  srclang       - Track language (e.g., "en", "es")
+  label         - User-visible label
+  default       - Marks as default track
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <video controls>
+    <source src="video.mp4" type="video/mp4">
+    <track src="captions-en.vtt" kind="captions" srclang="en" label="English">
+    <track src="subtitles-es.vtt" kind="subtitles" srclang="es" label="Español" default>
+  </video>
+
+Notes:
+  • Works with <video> and <audio>
+  • Must be in WebVTT format
+  • Only one default track per kind
+  • Critical for accessibility
+
+
+---
+49. <map> and <area>
+---
+Purpose: Creates clickable regions within an image (image maps)
+
+Attributes for <map>:
+  name          - Unique identifier (required, referenced by img usemap)
+  Global Attributes: id, class, style, data-*, etc.
+
+Attributes for <area>:
+  shape         - Shape type: rect | circle | poly | default (required)
+  coords        - Coordinates defining shape (required)
+  href          - URL to navigate to
+  alt           - Alternative text (required for accessibility)
+  target        - Where to open: _blank | _self | _parent | _top
+  rel           - Relationship: nofollow | external | etc.
+  ping          - URLs to notify on click
+  download      - Download attribute
+  Global Attributes: id, class, style, data-*, etc.
+
+Coordinate formats:
+  rect          - "x1, y1, x2, y2" (top-left, bottom-right)
+  circle        - "x, y, radius" (center, radius)
+  poly          - "x1, y1, x2, y2, ..." (series of points)
+
+Example:
+  <img src="map.jpg" alt="Map" usemap="#mymap">
+  <map name="mymap">
+    <area shape="rect" coords="0,0,100,100" 
+          href="page1.html" alt="Region 1">
+    <area shape="circle" coords="150,150,50" 
+          href="page2.html" alt="Region 2">
+    <area shape="poly" coords="200,0,300,100,200,200" 
+          href="page3.html" alt="Region 3">
+  </map>
+
+Notes:
+  • Coordinates in pixels
+  • <area> tags are self-closing
+  • Less common due to accessibility issues
+  • Proper alt text is essential
+
+
+---
+50. <canvas>
+---
+Purpose: Defines a drawable area for graphics using JavaScript
+
+Attributes:
+  width         - Width in pixels (default: 300)
+  height        - Height in pixels (default: 150)
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <canvas id="myCanvas" width="400" height="300"></canvas>
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(0, 0, 100, 100);
+  </script>
+
+Notes:
+  • Requires JavaScript for drawing
+  • Specify width/height as attributes (not CSS)
+  • CSS sizing distorts drawings
+  • Uses: games, animations, charts
+
+
+---
+51. <svg>
+---
+Purpose: Container for Scalable Vector Graphics
+
+Attributes:
+  width         - SVG width
+  height        - SVG height
+  viewBox       - Coordinate system: "x y width height"
+  preserveAspectRatio - Scaling behavior
+  xmlns         - XML namespace
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <svg width="200" height="200" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="50" fill="blue"/>
+    <rect x="10" y="10" width="50" height="50" fill="red"/>
+  </svg>
+
+Notes:
+  • Vector format (scales without pixelation)
+  • Contains shape elements
+  • CSS and JavaScript support
+  • Smaller file sizes for simple graphics
+
+
+================================================================================
+TABLE TAGS
+================================================================================
+
+---
+52. <table>
+---
+Purpose: Creates structured tabular data
+
+Attributes:
+  border        - Border width (deprecated, use CSS)
+  cellpadding   - Cell padding (deprecated, use CSS)
+  cellspacing   - Cell spacing (deprecated, use CSS)
+  summary       - Table summary (deprecated)
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <table border="1">
+    <thead>
+      <tr><th>Name</th><th>Age</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>John</td><td>25</td></tr>
+      <tr><td>Jane</td><td>30</td></tr>
+    </tbody>
+  </table>
+
+Notes:
+  • Use <thead>, <tbody>, <tfoot> for structure
+  • Always use <th> for headers
+  • Use CSS for styling, not attributes
+
+
+---
+53. <thead>, <tbody>, <tfoot>
+---
+Purpose: Group table rows into sections
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Deprecated:
+  align         - Text alignment (use CSS)
+  valign        - Vertical alignment (use CSS)
+
+Example:
+  <table>
+    <thead>
+      <tr><th>Header</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Data</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td>Footer</td></tr>
+    </tfoot>
+  </table>
+
+Notes:
+  • Improves semantic structure
+  • Helps with printing multi-page tables
+  • Improves accessibility
+
+
+---
+54. <tr>
+---
+Purpose: Defines a table row
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Deprecated:
+  align         - Text alignment (use CSS)
+  valign        - Vertical alignment (use CSS)
+  bgcolor       - Background color (use CSS)
+
+Example:
+  <tr>
+    <td>Cell 1</td>
+    <td>Cell 2</td>
+  </tr>
+
+Notes:
+  • Contains <th> and <td> elements
+  • Only direct child of table sections
+  • Use CSS for styling
+
+
+---
+55. <th>
+---
+Purpose: Defines a table header cell
+
+Attributes:
+  colspan       - Spans multiple columns
+  rowspan       - Spans multiple rows
+  headers       - Associates with other headers
+  scope         - Scope: row | col | rowgroup | colgroup (important for accessibility)
+  abbr          - Abbreviation of header content
+  Global Attributes: id, class, style, data-*, etc.
+
+Deprecated:
+  align         - Text alignment (use CSS)
+  valign        - Vertical alignment (use CSS)
+  width         - Cell width (use CSS)
+  height        - Cell height (use CSS)
+
+Example:
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Age</th>
+  </tr>
+
+Notes:
+  • Always use scope attribute
+  • Improves accessibility
+  • Bold by default
+
+
+---
+56. <td>
+---
+Purpose: Defines a table data cell
+
+Attributes:
+  colspan       - Spans multiple columns
+  rowspan       - Spans multiple rows
+  headers       - Associates with header cells
+  Global Attributes: id, class, style, data-*, etc.
+
+Deprecated:
+  align         - Text alignment (use CSS)
+  valign        - Vertical alignment (use CSS)
+  width         - Cell width (use CSS)
+  height        - Cell height (use CSS)
+
+Example:
+  <tr>
+    <td>John</td>
+    <td>25</td>
+  </tr>
+
+Notes:
+  • Contains cell data
+  • Can span multiple rows/columns
+  • Use CSS for styling
+
+
+---
+57. <caption>
+---
+Purpose: Provides a title or caption for a table
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Deprecated:
+  align         - Alignment (use CSS)
+
+Example:
+  <table>
+    <caption>Sales Data 2024</caption>
+    ...
+  </table>
+
+Notes:
+  • Must be first child of <table>
+  • Improves accessibility
+  • Screen readers announce caption
+
+
+---
+58. <colgroup> and <col>
+---
+Purpose: Groups columns for styling
+
+Attributes for <colgroup>:
+  span          - Number of columns in group
+  Global Attributes: id, class, style, data-*, etc.
+
+Attributes for <col>:
+  span          - Number of columns element applies to
+  Global Attributes: id, class, style, data-*, etc.
+
+Deprecated:
+  width         - Column width (use CSS)
+  align         - Text alignment (use CSS)
+  valign        - Vertical alignment (use CSS)
+
+Example:
+  <table>
+    <colgroup>
+      <col span="2" style="background-color: yellow;">
+      <col style="background-color: red;">
+    </colgroup>
+    ...
+  </table>
+
+Notes:
+  • <col> is self-closing
+  • Limited CSS support
+  • CSS alternatives preferred
+
+
+================================================================================
+FORM TAGS
+================================================================================
+
+---
+59. <form>
+---
+Purpose: Container for user input elements
+
+Attributes:
+  action        - URL for form submission (required for functionality)
+  method        - HTTP method: GET | POST (default: GET)
+  enctype       - Encoding type:
+                  application/x-www-form-urlencoded (default)
+                  multipart/form-data (file uploads)
+                  text/plain
+  autocomplete  - Enable/disable autocomplete: on | off
+  name          - Form name
+  target        - Where to display response: _blank | _self | _parent | _top
+  novalidate    - Disable HTML5 validation
+  accept-charset - Character encoding
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <form action="submit.php" method="POST" enctype="multipart/form-data">
+    <input type="text" name="username" required>
+    <input type="email" name="email" required>
+    <button type="submit">Submit</button>
+  </form>
+
+Notes:
+  • POST is more secure than GET
+  • Use enctype for file uploads
+  • HTML5 validation built-in
+  • Server-side validation always required
+
+
+---
+60. <input>
+---
+Purpose: Creates interactive form input fields
+
+Attributes:
+  type          - Input type (required):
+                  text | password | email | number | date | time | file
+                  checkbox | radio | button | submit | reset | hidden
+                  range | color | search | tel | url | week | month
+  name          - Field name for form submission
+  value         - Default or submitted value
+  placeholder   - Hint text shown when empty
+  required      - Must be filled before submit
+  disabled      - Disables the input
+  readonly      - Value cannot be changed
+  autocomplete  - Autocomplete: on | off | specific value
+  autofocus     - Automatically focus when page loads
+  min           - Minimum value (number, date, time)
+  max           - Maximum value (number, date, time)
+  step          - Increment value (number, date, time)
+  pattern       - Regular expression for validation
+  maxlength     - Maximum character count
+  minlength     - Minimum character count
+  multiple      - Allow multiple selections (file, email)
+  accept        - File types to accept (file input)
+  checked       - Pre-selected (checkbox, radio)
+  size          - Display width in characters
+  list          - Connects to <datalist> for suggestions
+  aria-label    - Label for screen readers
+  Global Attributes: id, class, style, data-*, etc.
+
+Examples:
+  <!-- Text -->
+  <input type="text" name="username" placeholder="Enter username" required>
+  
+  <!-- Email -->
+  <input type="email" name="email" autocomplete="email">
+  
+  <!-- Number -->
+  <input type="number" name="age" min="0" max="120" step="1">
+  
+  <!-- Date -->
+  <input type="date" name="birthdate" required>
+  
+  <!-- File -->
+  <input type="file" name="upload" accept="image/*" multiple>
+  
+  <!-- Checkbox -->
+  <input type="checkbox" name="agree" value="yes"> I agree
+  
+  <!-- Radio -->
+  <input type="radio" name="choice" value="option1"> Option 1
+  
+  <!-- Hidden -->
+  <input type="hidden" name="token" value="xyz123">
+  
+  <!-- Range -->
+  <input type="range" name="volume" min="0" max="100" value="50">
+  
+  <!-- Color -->
+  <input type="color" name="color" value="#ff0000">
+  
+  <!-- Search -->
+  <input type="search" name="q" placeholder="Search...">
+  
+  <!-- Telephone -->
+  <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+  
+  <!-- URL -->
+  <input type="url" name="website" required>
+
+Notes:
+  • Self-closing tag
+  • Type determines validation and display
+  • Always pair with <label>
+  • Server-side validation required
+
+
+---
+61. <textarea>
+---
+Purpose: Multi-line text input field
+
+Attributes:
+  name          - Field name
+  rows          - Number of visible rows
+  cols          - Number of visible columns
+  placeholder   - Hint text
+  required      - Must be filled
+  disabled      - Disables textarea
+  readonly      - Cannot be modified
+  maxlength     - Maximum character count
+  minlength     - Minimum character count
+  autocomplete  - Autocomplete: on | off
+  autofocus     - Automatically focus
+  wrap          - Text wrapping: soft | hard | off
+  spellcheck    - Spell checking: true | false | default
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <textarea name="message" rows="5" cols="40" 
+            placeholder="Enter message..." maxlength="500"></textarea>
+
+Notes:
+  • Content goes between tags
+  • Use CSS for sizing
+  • Default value is text content
+  • Good for longer text
+
+
+---
+62. <button>
+---
+Purpose: Clickable button element
+
+Attributes:
+  type          - Button type: submit | reset | button (default: submit)
+  name          - Button name
+  value         - Value sent when clicked
+  disabled      - Disables button
+  autofocus     - Automatically focus
+  form          - Associates with form by id
+  formaction    - Override form action
+  formmethod    - Override form method
+  formenctype   - Override form enctype
+  formnovalidate - Bypass form validation
+  formtarget    - Override form target
+  Global Attributes: id, class, style, data-*, etc.
+
+Examples:
+  <button type="submit">Submit</button>
+  <button type="reset">Clear</button>
+  <button type="button" onclick="doSomething()">Click Me</button>
+
+Notes:
+  • More flexible than <input type="button">
+  • Can contain HTML
+  • Always specify type
+
+
+---
+63. <label>
+---
+Purpose: Provides text label for form inputs
+
+Attributes:
+  for           - Connects to input by id (associates label)
+  Global Attributes: id, class, style, data-*, etc.
+
+Examples:
+  <!-- Method 1: using for attribute -->
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username">
+  
+  <!-- Method 2: wrap input inside label -->
+  <label>
+    Username:
+    <input type="text" name="username">
+  </label>
+
+Notes:
+  • Critical for accessibility
+  • Clicking label focuses input
+  • Increases mobile clickable area
+  • Screen readers read label text
+
+
+---
+64. <fieldset> and <legend>
+---
+Purpose: Groups related form elements with caption
+
+Attributes for <fieldset>:
+  disabled      - Disables all controls inside
+  form          - Associates with form by id
+  name          - Fieldset name
+  Global Attributes: id, class, style, data-*, etc.
+
+Attributes for <legend>:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <fieldset>
+    <legend>Personal Information</legend>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+  </fieldset>
+
+Notes:
+  • <legend> must be first child
+  • Improves form organization
+  • Screen readers announce groups
+  • disabled disables all controls
+
+
+---
+65. <select>, <option>, <optgroup>
+---
+Purpose: Dropdown/select menus
+
+Attributes for <select>:
+  name          - Select name
+  size          - Number of visible options (default: 1)
+  multiple      - Allow multiple selections
+  required      - Must select option
+  disabled      - Disables select
+  autofocus     - Automatically focus
+  form          - Associates with form by id
+  Global Attributes: id, class, style, data-*, etc.
+
+Attributes for <option>:
+  value         - Value submitted
+  selected      - Pre-selected option
+  disabled      - Disables this option
+  label         - Short label (alternative to content)
+  Global Attributes: id, class, style, data-*, etc.
+
+Attributes for <optgroup>:
+  label         - Group label (required)
+  disabled      - Disables all options in group
+  Global Attributes: id, class, style, data-*, etc.
+
+Examples:
+  <!-- Simple dropdown -->
+  <select name="country">
+    <option value="">Select a country</option>
+    <option value="us">United States</option>
+    <option value="uk">United Kingdom</option>
+  </select>
+  
+  <!-- Grouped options -->
+  <select name="sport">
+    <optgroup label="Ball Sports">
+      <option value="soccer">Soccer</option>
+      <option value="basketball">Basketball</option>
+    </optgroup>
+    <optgroup label="Water Sports">
+      <option value="swimming">Swimming</option>
+      <option value="diving">Diving</option>
+    </optgroup>
+  </select>
+  
+  <!-- Multiple selection -->
+  <select name="interests" multiple>
+    <option value="sports">Sports</option>
+    <option value="music">Music</option>
+    <option value="reading">Reading</option>
+  </select>
+
+Notes:
+  • value attribute is what gets submitted
+  • Always include placeholder option
+  • optgroup improves organization
+  • Mobile shows custom UI
+
+
+---
+66. <datalist>
+---
+Purpose: Provides autocomplete suggestions for input
+
+Attributes:
+  id            - Unique identifier (required, referenced by input list)
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <input type="text" name="country" list="countries">
+  <datalist id="countries">
+    <option value="United States">
+    <option value="United Kingdom">
+    <option value="Canada">
+  </datalist>
+
+Notes:
+  • Works with text, email, url, tel, number
+  • Shows suggestions as user types
+  • Users can enter other values
+  • Progressive enhancement
+
+
+---
+67. <output>
+---
+Purpose: Displays results from calculations or scripts
+
+Attributes:
+  for           - IDs of elements that calculated output (space-separated)
+  name          - Output name
+  form          - Associates with form by id
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <input type="number" id="a" value="10">
+  <input type="number" id="b" value="5">
+  <output name="sum" for="a b">15</output>
+
+Notes:
+  • Not submitted as form data
+  • Use for calculation results
+  • Can contain HTML
+
+
+---
+68. <progress>
+---
+Purpose: Displays progress of a task
+
+Attributes:
+  value         - Current progress value (0 to max)
+  max           - Maximum value (default: 1)
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <progress value="70" max="100"></progress>
+
+Notes:
+  • Visual progress bar
+  • Without value shows indeterminate
+  • Useful for downloads, uploads
+  • Styleable with CSS
+
+
+---
+69. <meter>
+---
+Purpose: Displays scalar measurement within a range
+
+Attributes:
+  value         - Current value (required)
+  min           - Minimum value (default: 0)
+  max           - Maximum value (default: 1)
+  low           - Low threshold
+  high          - High threshold
+  optimum       - Optimal value
+  Global Attributes: id, class, style, data-*, etc.
+
+Examples:
+  <!-- Temperature gauge -->
+  <meter value="6.5" min="0" max="10" low="3" high="7"></meter>
+  
+  <!-- Rating -->
+  <meter value="4" min="1" max="5"></meter>
+
+Notes:
+  • Visual gauge
+  • Different from <progress>
+  • Color changes based on ranges
+  • Semantic meaning
+
+
+================================================================================
+SEMANTIC & STRUCTURAL TAGS
+================================================================================
+
+---
+70. <header>
+---
+Purpose: Represents introductory content or heading section
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <header>
+    <h1>Website Title</h1>
+    <p>Tagline here</p>
+  </header>
+
+Notes:
+  • Can appear multiple times
+  • Contains introductory content
+  • Often contains navigation
+  • Improves accessibility
+
+
+---
+71. <nav>
+---
+Purpose: Represents major navigation links
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+  </nav>
+
+Notes:
+  • Major navigation only
+  • Contains <a> tags
+  • Can appear multiple times
+  • Improves accessibility
+
+
+---
+72. <main>
+---
+Purpose: Marks the main content of the page
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <main>
+    <article>...</article>
+  </main>
+
+Notes:
+  • Only one per page
+  • Improves accessibility
+  • Screen readers navigate to main
+  • Should not be inside nav/aside
+
+
+---
+73. <article>
+---
+Purpose: Represents self-contained content (blog post, news item)
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <article>
+    <h2>Article Title</h2>
+    <p>Article content...</p>
+  </article>
+
+Notes:
+  • Self-contained and independent
+  • Can contain <header>, <footer>, <section>
+  • Can be nested
+  • Improves semantic structure
+
+
+---
+74. <section>
+---
+Purpose: Represents a standalone section of content
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <section>
+    <h2>Section Heading</h2>
+    <p>Section content...</p>
+  </section>
+
+Notes:
+  • Semantic alternative to <div>
+  • Represents themed content
+  • Usually has heading
+  • Different from <article>
+
+
+---
+75. <aside>
+---
+Purpose: Defines related but separate content (sidebar, ads)
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <aside>
+    <h3>Related Links</h3>
+    <ul>...</ul>
+  </aside>
+
+Notes:
+  • Sidebar content
+  • Related but separate
+  • Often pull quotes or ads
+  • Improves structure
+
+
+---
+76. <footer>
+---
+Purpose: Defines footer content for document or section
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <footer>
+    <p>&copy; 2024 Company. All rights reserved.</p>
+    <nav>...</nav>
+  </footer>
+
+Notes:
+  • Can appear multiple times
+  • Contains copyright, links, author
+  • Can be in <article> or page-level
+  • Improves semantic structure
+
+
+---
+77. <figure> and <figcaption>
+---
+(Covered above with media tags - Reference section 44)
+
+
+---
+78. <time>
+---
+Purpose: Represents a specific date/time
+
+Attributes:
+  datetime      - Machine-readable format (YYYY-MM-DDTHH:MM:SS)
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <time datetime="2024-01-15T10:30:00Z">January 15, 2024</time>
+
+Notes:
+  • Machine-readable format important
+  • Screen readers announce date
+  • Useful for blogs and news
+  • Semantic meaning
+
+
+---
+79. <details> and <summary>
+---
+Purpose: Creates expandable/collapsible section
+
+Attributes for <details>:
+  open          - Expanded by default
+  Global Attributes: id, class, style, data-*, etc.
+
+Attributes for <summary>:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <details>
+    <summary>Click to expand</summary>
+    <p>This content is hidden until expanded.</p>
+  </details>
+
+Notes:
+  • <summary> must be first child
+  • Browser provides disclosure triangle
+  • No JavaScript needed
+  • open attribute shows expanded
+
+
+---
+80. <dialog>
+---
+Purpose: Defines a popup dialog box or modal
+
+Attributes:
+  open          - Dialog is visible (boolean)
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <dialog id="myDialog">
+    <p>Dialog content here</p>
+    <button onclick="document.getElementById('myDialog').close()">Close</button>
+  </dialog>
+  <button onclick="document.getElementById('myDialog').showModal()">Open</button>
+
+Notes:
+  • Hidden by default
+  • showModal() for modal dialog
+  • show() for non-modal
+  • Can be styled with CSS
+
+
+================================================================================
+LIST TAGS
+================================================================================
+
+---
+81. <ul>
+---
+Purpose: Unordered list (bullet points)
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Deprecated:
+  type          - Marker style (use CSS)
+
+Example:
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+
+Notes:
+  • Contains <li> elements
+  • Bullet points by default
+  • Use CSS for styling
+  • Can be nested
+
+
+---
+82. <ol>
+---
+Purpose: Ordered list (numbered)
+
+Attributes:
+  start         - Starting number (default: 1)
+  type          - Number style: 1 | a | A | i | I
+  reversed      - Count down instead of up
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <ol start="5" type="a">
+    <li>Item A</li>
+    <li>Item B</li>
+    <li>Item C</li>
+  </ol>
+
+Notes:
+  • Contains <li> elements
+  • Numbered by default
+  • start attribute for custom number
+  • Can be reversed
+
+
+---
+83. <li>
+---
+Purpose: List item in <ul> or <ol>
+
+Attributes:
+  value         - Numeric value (for <ol> only)
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <li value="10">Item with custom number</li>
+
+Notes:
+  • Direct child of <ul> or <ol>
+  • Can contain block elements
+  • value attribute for custom numbering
+
+
+---
+84. <dl>, <dt>, <dd>
+---
+Purpose: Description list (terminology and definitions)
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <dl>
+    <dt>HTML</dt>
+    <dd>HyperText Markup Language</dd>
+    
+    <dt>CSS</dt>
+    <dd>Cascading Style Sheets</dd>
+  </dl>
+
+Notes:
+  • <dl> contains <dt> and <dd>
+  • <dt> = term, <dd> = definition
+  • Less common but semantic
+  • Good for glossaries
+
+
+================================================================================
+SCRIPT & STYLE TAGS
+================================================================================
+
+---
+85. <script>
+---
+Purpose: Embeds or references JavaScript code
+
+Attributes:
+  src           - External JavaScript file URL
+  type          - Script type (default: text/javascript)
+  async         - Download in background, execute immediately
+  defer         - Download in background, execute after page loads
+  module        - Treat as JavaScript module
+  nomodule      - Script for browsers without module support
+  integrity     - Subresource integrity check
+  crossorigin   - CORS setting: anonymous | use-credentials
+  Global Attributes: id, class, style, data-*, etc.
+
+Examples:
+  <!-- Inline script -->
+  <script>
+    console.log('Hello, World!');
+  </script>
+  
+  <!-- External script -->
+  <script src="script.js"></script>
+  
+  <!-- Async (download and execute immediately) -->
+  <script src="script.js" async></script>
+  
+  <!-- Defer (download, then execute after page loads) -->
+  <script src="script.js" defer></script>
+  
+  <!-- Module -->
+  <script type="module" src="module.js"></script>
+
+Notes:
+  • Can be in <head> or <body>
+  • defer recommended for <head>
+  • async for independent scripts
+  • Security: src over inline
+
+
+---
+86. <noscript>
+---
+Purpose: Displays content when JavaScript is disabled
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <noscript>
+    <p>This site requires JavaScript to function properly.</p>
+  </noscript>
+
+Notes:
+  • Fallback for no JavaScript
+  • Less common in modern apps
+  • Can contain HTML
+  • Accessibility consideration
+
+
+---
+87. <style>
+---
+Purpose: Embeds CSS styling rules
+
+Attributes:
+  type          - Content type (default: text/css)
+  media         - Media types: screen | print | all | etc.
+  scoped        - Scope to parent element (deprecated)
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    
+    h1 {
+      color: blue;
+    }
+  </style>
+
+Notes:
+  • Should be in <head>
+  • One or more allowed
+  • External stylesheets preferred
+  • Media queries supported
+
+
+---
+88. <link> (for stylesheets)
+---
+(Covered above - Reference section 8)
+
+
+================================================================================
+SPECIAL & DEPRECATED TAGS
+================================================================================
+
+---
+89. <template>
+---
+Purpose: Stores reusable HTML fragments (not rendered)
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <template id="my-template">
+    <div class="item">
+      <h3>Item Title</h3>
+      <p>Item description</p>
+    </div>
+  </template>
+  
+  <script>
+    const template = document.getElementById('my-template');
+    const clone = template.content.cloneNode(true);
+    document.body.appendChild(clone);
+  </script>
+
+Notes:
+  • Content not rendered
+  • Used with JavaScript
+  • Clone for reuse
+  • Modern HTML5 feature
+
+
+---
+90. <embed>
+---
+Purpose: Embeds external resources (Flash, plugins)
+
+Attributes:
+  src           - Resource URL (required)
+  type          - MIME type
+  width         - Width
+  height        - Height
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <embed src="document.pdf" type="application/pdf">
+
+Notes:
+  • Self-closing tag
+  • Limited use (Flash is deprecated)
+  • <iframe> often better alternative
+  • Browser plugin dependent
+
+
+---
+91. <object>
+---
+Purpose: Embeds multimedia content or external documents
+
+Attributes:
+  data          - Resource URL
+  type          - MIME type
+  width         - Width
+  height        - Height
+  name          - Name for form submission
+  usemap        - Links to <map> for image map
+  form          - Associates with form by id
+  classid       - Class identifier
+  codetype      - Codetype
+  codebase      - Base URL for code
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <object data="document.pdf" type="application/pdf" width="400" height="600">
+    <p>PDF could not be displayed.</p>
+  </object>
+
+Notes:
+  • More flexible than <embed>
+  • Can contain fallback content
+  • Complex attributes
+  • Limited browser support
+
+
+---
+92. <param>
+---
+Purpose: Defines parameters for <object> element
+
+Attributes:
+  name          - Parameter name (required)
+  value         - Parameter value (required)
+  type          - MIME type
+  valuetype     - Value type: data | ref | object
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <object data="video.swf">
+    <param name="autoplay" value="true">
+    <param name="loop" value="true">
+  </object>
+
+Notes:
+  • Self-closing tag
+  • Child of <object>
+  • Rarely used (Flash deprecated)
+
+
+---
+93. <iframe>
+---
+Purpose: Embeds another HTML document in a frame
+
+Attributes:
+  src           - Document URL
+  title         - Accessibility title (recommended)
+  width         - Frame width
+  height        - Frame height
+  frameborder   - Border: 0 | 1 (deprecated, use CSS)
+  scrolling     - Scrolling: yes | no | auto (deprecated, use CSS)
+  name          - Frame name (for target links)
+  sandbox       - Security restrictions (allow-scripts, allow-same-origin, etc.)
+  allow         - Feature permissions
+  referrerpolicy - Referrer policy
+  loading       - Lazy loading: lazy | eager
+  crossorigin   - CORS setting: anonymous | use-credentials
+  Global Attributes: id, class, style, data-*, etc.
+
+Examples:
+  <!-- Basic iframe -->
+  <iframe src="page.html" width="400" height="300" title="Embedded page"></iframe>
+  
+  <!-- YouTube video -->
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID"></iframe>
+  
+  <!-- With sandbox -->
+  <iframe src="untrusted.html" sandbox="allow-scripts"></iframe>
+  
+  <!-- With loading -->
+  <iframe src="page.html" loading="lazy"></iframe>
+
+Notes:
+  • Separate document context
+  • sandbox for security
+  • Use title for accessibility
+  • Can be targeted by links
+
+
+---
+94. <wbr>
+---
+Purpose: Suggests a line break opportunity
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <p>http://www.example.com<wbr>/very/long/path/to/resource</p>
+
+Notes:
+  • Self-closing tag
+  • Browser decides whether to break
+  • Use for long URLs or words
+  • Zero-width by default
+
+
+---
+95. <hgroup>
+---
+Purpose: Groups multiple headings
+
+Attributes:
+  Global Attributes: id, class, style, data-*, etc.
+
+Example:
+  <hgroup>
+    <h1>Main Title</h1>
+    <h2>Subtitle or Tagline</h2>
+  </hgroup>
+
+Notes:
+  • Rarely used
+  • Groups heading with subheading
+  • Single semantic element
+  • Less browser support
+
+
+---
+96. <dd>
+---
+(Description definition - Reference section 84)
+
+
+---
+97. <dt>
+---
+(Description term - Reference section 84)
+
+
+---
+98. <acronym>
+---
+Purpose: Defines an acronym (DEPRECATED)
+
+Attributes:
+  title         - Full form of acronym
+
+Notes:
+  • DEPRECATED in HTML5
+  • Use <abbr> instead
+  • Similar to <abbr>
+
+
+---
+99. <font>
+---
+Purpose: Sets font, size, and color (DEPRECATED)
+
+Attributes:
+  face          - Font name (deprecated)
+  size          - Font size 1-7 (deprecated)
+  color         - Text color (deprecated)
+
+Notes:
+  • DEPRECATED - Use CSS instead
+  • CSS font properties are standard
+
+
+---
+100. <center>
+---
+Purpose: Centers content (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use CSS instead
+  • Use text-align: center in CSS
+  • Use flexbox or grid for layout
+
+
+---
+101. <big>
+---
+Purpose: Increases text size (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use CSS instead
+  • Use CSS font-size property
+  • Use <strong> or semantic tags
+
+
+---
+102. <strike>
+---
+Purpose: Strikethrough text (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <s> or CSS
+  • Use <s> tag for semantic meaning
+  • Use CSS text-decoration for styling
+
+
+---
+103. <tt>
+---
+Purpose: Teletype text (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <code> instead
+  • Use <code> for computer code
+  • Use CSS for monospace
+
+
+---
+104. <bgsound>
+---
+Purpose: Plays background audio (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <audio> instead
+  • Autoplay was intrusive
+  • Use <audio> with controls
+
+
+---
+105. <basefont>
+---
+Purpose: Sets default font (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use CSS instead
+  • Use CSS body font properties
+  • CSS is more flexible
+
+
+---
+106. <applet>
+---
+Purpose: Embeds Java applet (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Java applets dead
+  • Use <canvas> or <svg> instead
+  • Security and performance issues
+
+
+---
+107. <frame> and <frameset>
+---
+Purpose: Creates browser frames (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <iframe> instead
+  • Poor for SEO and accessibility
+  • Use <iframe> or layout alternatives
+
+
+---
+108. <marquee>
+---
+Purpose: Scrolls text or images (DEPRECATED)
+
+Attributes:
+  direction     - left | right | up | down
+  behavior      - scroll | slide | alternate
+  scrollamount  - Speed
+  scrolldelay   - Delay between scrolls
+
+Notes:
+  • DEPRECATED - Use CSS animations instead
+  • Distracting and poor UX
+  • CSS animations are better
+
+
+---
+109. <isindex>
+---
+Purpose: Creates single-line text query (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <input> instead
+  • No longer functional
+  • Use modern form controls
+
+
+---
+110. <keygen>
+---
+Purpose: Generates key-pair for forms (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Removed from HTML
+  • Security concerns
+  • No longer supported
+
+
+---
+111. <spacer>
+---
+Purpose: Creates empty space (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use CSS margins instead
+  • Never use for layout
+  • CSS is the proper way
+
+
+---
+112. <nobr>
+---
+Purpose: Prevents line breaks (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use CSS white-space: nowrap
+  • CSS is more flexible
+  • Better control with CSS
+
+
+---
+113. <menuitem>
+---
+Purpose: Defines a menu command (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Limited browser support
+  • Use standard menus
+  • No practical use
+
+
+---
+114. <dir>
+---
+Purpose: Creates directory list (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <ul> instead
+  • <ul> is standard
+  • No real difference
+
+
+---
+115. <noembed>
+---
+Purpose: Alternative for unsupported embed (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <embed> alt text
+  • Rarely needed
+  • Better alternatives exist
+
+
+---
+116. <xmp>
+---
+Purpose: Displays preformatted text (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <pre> instead
+  • <pre> is standard
+  • Similar functionality
+
+
+---
+117. <listing>
+---
+Purpose: Preformatted text block (DEPRECATED)
+
+Notes:
+  • DEPRECATED - Use <pre> instead
+  • No longer used
+  • Use <pre> or <code>
+
+
+================================================================================
+GLOBAL ATTRIBUTES (Applicable to Most Elements)
+================================================================================
+
+---
+id
+---
+Purpose: Unique identifier for an element
+Value: Unique string (case-sensitive)
+Example: <div id="main-container">...</div>
+Notes: Used by CSS and JavaScript for targeting
+
+---
+class
+---
+Purpose: CSS class(es) for styling or selection
+Value: Space-separated class names
+Example: <div class="container primary">...</div>
+Notes: Multiple classes allowed
+
+---
+style
+---
+Purpose: Inline CSS styling
+Value: CSS declarations
+Example: <p style="color: blue; font-size: 16px;">Text</p>
+Notes: Lower specificity than stylesheets
+
+---
+title
+---
+Purpose: Tooltip text shown on hover
+Value: Text string
+Example: <a href="#" title="Tooltip text">Link</a>
+Notes: Appears on hover
+
+---
+lang
+---
+Purpose: Language of element content
+Value: Language code (e.g., "en", "es", "fr")
+Example: <p lang="es">¡Hola!</p>
+Notes: Important for accessibility
+
+---
+dir
+---
+Purpose: Text direction
+Value: ltr | rtl | auto
+Example: <p dir="rtl">This text runs right to left</p>
+Notes: For multilingual content
+
+---
+data-*
+---
+Purpose: Custom data attributes
+Value: Any string
+Example: <div data-user-id="12345" data-role="admin">...</div>
+Notes: Accessed via JavaScript dataset API
+
+---
+contenteditable
+---
+Purpose: Makes element editable
+Value: true | false | inherit
+Example: <div contenteditable="true">Edit this text</div>
+Notes: Requires JavaScript for persistence
+
+---
+tabindex
+---
+Purpose: Tab order for keyboard navigation
+Value: Integer (-1 to 32767)
+Example: <button tabindex="1">First</button>
+Notes: -1 removes from tab order
+
+---
+hidden
+---
+Purpose: Hides element from display
+Value: Boolean attribute (no value needed)
+Example: <p hidden>This is hidden</p>
+Notes: Display: none equivalent
+
+---
+draggable
+---
+Purpose: Enables drag and drop
+Value: true | false | auto
+Example: <img draggable="true" src="image.jpg">
+Notes: Requires JavaScript handlers
+
+---
+spellcheck
+---
+Purpose: Spell checking
+Value: true | false | default
+Example: <textarea spellcheck="true"></textarea>
+Notes: Browser-dependent
+
+---
+dropzone
+---
+Purpose: Accepts dragged/dropped files
+Value: copy | move | link
+Example: <div dropzone="copy">Drop files here</div>
+Notes: Part of drag/drop API
+
+---
+accesskey
+---
+Purpose: Keyboard shortcut for element
+Value: Single character
+Example: <a href="#" accesskey="h">Home</a>
+Notes: Alt+key activates (browser-dependent)
+
+---
+aria-label
+---
+Purpose: Accessible label for screen readers
+Value: Text description
+Example: <button aria-label="Close dialog">×</button>
+Notes: For elements without visible labels
+
+---
+aria-describedby
+---
+Purpose: References element that describes this one
+Value: Element ID
+Example: <input aria-describedby="help">
+Notes: For additional accessibility info
+
+---
+aria-hidden
+---
+Purpose: Hides from screen readers
+Value: true | false
+Example: <span aria-hidden="true">icon</span>
+Notes: Different from HTML hidden
+
+---
+role
+---
+Purpose: ARIA role for assistive technology
+Value: ARIA role name
+Example: <div role="alert">Important message</div>
+Notes: Semantic HTML preferred
+
+
+================================================================================
+EVENT ATTRIBUTES (JavaScript)
+================================================================================
+
+---
+Mouse Events
+---
+onclick         - Element clicked
+ondblclick      - Element double-clicked
+onmouseenter    - Mouse enters element
+onmouseleave    - Mouse leaves element
+onmouseover     - Mouse over element
+onmouseout      - Mouse leaves element
+onmousemove     - Mouse moves over element
+onmousedown     - Mouse button pressed
+onmouseup       - Mouse button released
+oncontextmenu   - Right-click context menu
+
+---
+Keyboard Events
+---
+onkeydown       - Key pressed down
+onkeyup         - Key released
+onkeypress      - Key pressed and released
+
+---
+Focus Events
+---
+onfocus         - Element gets focus
+onblur          - Element loses focus
+
+---
+Form Events
+---
+onchange        - Form input value changed
+oninput         - Input value changed (in real-time)
+onsubmit        - Form submitted
+onreset         - Form reset
+onselect        - Text selected
+
+---
+Document Events
+---
+onload          - Page/resource fully loaded
+onunload        - Page about to unload
+onbeforeunload  - Before page unload
+onscroll        - Page scrolled
+
+---
+Media Events
+---
+onplay          - Media starts playing
+onpause         - Media paused
+onended         - Media finished
+oncanplay       - Media can start playing
+onloadeddata    - Media data loaded
+ontimeupdate    - Media playback time changed
+
+
+================================================================================
+SUMMARY OF TAG CATEGORIES
+================================================================================
+
+Document Structure (8 tags):
+  <!DOCTYPE> | <html> | <head> | <title> | <body> | <base> | <meta> | <link>
+
+Text Formatting (28 tags):
+  <p> | <h1>-<h6> | <strong> | <b> | <em> | <i> | <mark> | <small>
+  <sub> | <sup> | <u> | <s> | <del> | <ins> | <code> | <pre>
+  <blockquote> | <q> | <cite> | <dfn> | <abbr> | <address>
+  <kbd> | <samp> | <var> | <bdi> | <bdo> | <br> | <hr>
+
+Semantic Structure (7 tags):
+  <header> | <nav> | <main> | <article> | <section> | <aside> | <footer>
+
+Lists (4 tags):
+  <ul> | <ol> | <li> | <dl> | <dt> | <dd>
+
+Tables (8 tags):
+  <table> | <thead> | <tbody> | <tfoot> | <tr> | <th> | <td>
+  <caption> | <colgroup> | <col>
+
+Forms (12 tags):
+  <form> | <input> | <textarea> | <button> | <label> | <fieldset>
+  <legend> | <select> | <option> | <optgroup> | <datalist>
+  <output> | <progress> | <meter>
+
+Media & Embedded (16 tags):
+  <img> | <picture> | <audio> | <video> | <source> | <track>
+  <figure> | <figcaption> | <canvas> | <svg> | <map> | <area>
+  <iframe> | <embed> | <object> | <param>
+
+Links & Navigation (2 tags):
+  <a> | <nav>
+
+Scripting & Styling (6 tags):
+  <script> | <noscript> | <style> | <link> | <template>
+
+Special (3 tags):
+  <details> | <summary> | <dialog> | <time> | <wbr> | <hgroup>
+
+Deprecated (20+ tags):
+  <font> | <center> | <big> | <strike> | <tt> | <applet>
+  <marquee> | <frame> | <frameset> | <basefont> | <bgsound>
+  <acronym> | <isindex> | <keygen> | <spacer> | <nobr>
+  And more...
+
+
+ 
